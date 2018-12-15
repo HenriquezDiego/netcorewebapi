@@ -7,17 +7,10 @@ namespace netcorewebapi.Controllers
     
     public class ValueController : ControllerBase
     {
-        public ValueController()
-        {
-
-        }
-
-
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(new string [] {"Value1", "Value2", "Value3"});
+            return Ok(new[] {"Value1", "Value2", "Value3"});
         }
-
     }
 }

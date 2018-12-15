@@ -1,0 +1,17 @@
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.deps.json
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.runtimeconfig.json
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.runtimeconfig.dev.json
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.dll
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.pdb
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.DataAccess.dll
+D:\Projects\Work\netcorewebapi\netcorewebapi\bin\Debug\netcoreapp2.2\Netcorewebapi.DataAccess.pdb
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.csprojAssemblyReference.cache
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.csproj.CoreCompileInputs.cache
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.RazorAssemblyInfo.cache
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.RazorAssemblyInfo.cs
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.AssemblyInfoInputs.cache
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.AssemblyInfo.cs
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.RazorTargetAssemblyInfo.cache
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.csproj.CopyComplete
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.dll
+D:\Projects\Work\netcorewebapi\netcorewebapi\obj\Debug\netcoreapp2.2\Netcorewebapi.pdb

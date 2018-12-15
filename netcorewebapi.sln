@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "netcorewebapi", "netcorewebapi\netcorewebapi.csproj", "{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netcorewebapi", "netcorewebapi\Netcorewebapi.csproj", "{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netcorewebapi.DataAccess", "Netcorewebapi.DataAccess\Netcorewebapi.DataAccess.csproj", "{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{30591B71-C7C5-4FCF-A8F6-FCCA71EC9FCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,17 @@ Global
 		{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA398DD0-4D2B-46E7-BDFD-0C7E6B6318FE} = {30591B71-C7C5-4FCF-A8F6-FCCA71EC9FCA}
+		{86055364-F1BF-49AE-92A0-ECFA4A20FBBE} = {30591B71-C7C5-4FCF-A8F6-FCCA71EC9FCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05BDE702-55FF-48C3-9760-3359B827031F}

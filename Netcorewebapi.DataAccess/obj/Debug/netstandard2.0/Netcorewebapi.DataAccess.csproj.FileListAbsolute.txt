@@ -1,0 +1,14 @@
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Netcorewebapi.DataAccess.deps.json
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Netcorewebapi.DataAccess.dll
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Netcorewebapi.DataAccess.pdb
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.csprojAssemblyReference.cache
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.csproj.CoreCompileInputs.cache
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.AssemblyInfoInputs.cache
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.AssemblyInfo.cs
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.dll
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.pdb
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Newtonsoft.Json.dll
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.xml
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\bin\Debug\netstandard2.0\Newtonsoft.Json.xml
+D:\Projects\Work\netcorewebapi\Netcorewebapi.DataAccess\obj\Debug\netstandard2.0\Netcorewebapi.DataAccess.csproj.CopyComplete

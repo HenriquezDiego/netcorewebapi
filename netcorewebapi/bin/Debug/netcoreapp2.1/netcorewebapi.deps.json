@@ -22,16 +22,16 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "netcorewebapi/1.0.0": {
+      "Netcorewebapi/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0"
         },
         "runtime": {
-          "netcorewebapi.dll": {}
+          "Netcorewebapi.dll": {}
         },
         "compile": {
-          "netcorewebapi.dll": {}
+          "Netcorewebapi.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.1.0": {
@@ -3151,7 +3151,7 @@
     }
   },
   "libraries": {
-    "netcorewebapi/1.0.0": {
+    "Netcorewebapi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
