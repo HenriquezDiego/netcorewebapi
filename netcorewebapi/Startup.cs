@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
 
@@ -27,6 +28,8 @@ namespace netcorewebapi
             {
                 cfg.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddTransient<StoreTreat>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +38,11 @@ namespace netcorewebapi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var seeder = scope.ServiceProvider.GetService<StoreTreat>();
+                    seeder.Seed();
+                }
             }
             else
             {

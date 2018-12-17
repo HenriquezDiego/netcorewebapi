@@ -25,7 +25,7 @@ namespace Netcorewebapi.DataAccess.Data
 
             Context.Database.EnsureCreated();
             if (Context.Products.Any()) return;
-            var filepath = Path.Combine(Hosting.ContentRootPath, "Data/art.json");
+            var filepath = Path.Combine(Hosting.ContentRootPath, @"..\Netcorewebapi.DataAccess\Data\art.json");
             var json = File.ReadAllText(filepath);
             //JObject json = JObject.Parse(File.ReadAllText(filepath));
             var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
