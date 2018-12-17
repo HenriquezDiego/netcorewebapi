@@ -16,6 +16,12 @@ namespace Netcorewebapi.DataAccess.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<OrderItem>()
+                .Property(p => p.UnitPrice)
+                .HasColumnType("decimal(18, 5)");
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18, 5)");
             base.OnModelCreating(modelBuilder);
         }
     }
