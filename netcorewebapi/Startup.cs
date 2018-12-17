@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
@@ -30,6 +31,7 @@ namespace netcorewebapi
             });
 
             services.AddTransient<StoreTreat>();
+            services.AddScoped<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

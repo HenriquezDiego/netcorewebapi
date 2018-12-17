@@ -4,13 +4,11 @@ using Netcorewebapi.DataAccess.Persistence;
 
 namespace Netcorewebapi.DataAccess.Core
 {
-    public interface IDutchRepository
+    public interface IRepository
     {
         ApplicationDbContext Context { get; }
-
         IEnumerable<Order> GetAllOrders();
         IEnumerable<Order> GetAllOrders(bool include);
-
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetProductsByCategory(string category);
         Order GetOrderById(int id);

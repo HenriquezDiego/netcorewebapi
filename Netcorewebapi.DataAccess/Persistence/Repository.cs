@@ -8,12 +8,12 @@ using Netcorewebapi.DataAccess.Core;
 
 namespace Netcorewebapi.DataAccess.Persistence
 {
-    public class DutchRepository : IDutchRepository
+    public class Repository : IRepository
     {
         public ApplicationDbContext Context { get; }
-        private ILogger<DutchRepository> Logger { get; }
+        private ILogger<Repository> Logger { get; }
 
-        public DutchRepository(ApplicationDbContext context, ILogger<DutchRepository> logger)
+        public Repository(ApplicationDbContext context, ILogger<Repository> logger)
         {
             Context = context;
             Logger = logger;
@@ -24,7 +24,7 @@ namespace Netcorewebapi.DataAccess.Persistence
             Logger.LogInformation("GetAllProducts was called");
             return Context.Products
                     .OrderBy(p => p.Title)
-                    .ToList().Take(20);
+                    .ToList();
 
         }
 
