@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
+using Netcorewebapi.Infrastructure.HttpErrors;
+using Netcorewebapi.Middleware;
 using Newtonsoft.Json;
 
 namespace Netcorewebapi
@@ -33,6 +35,7 @@ namespace Netcorewebapi
 
             services.AddAutoMapper();
 
+            services.AddSingleton<IHttpErrorFactory,DefaultHttpErrorFactory>();
             services.AddTransient<StoreTreat>();
             services.AddScoped<IRepository, Repository>();
         }
@@ -55,7 +58,9 @@ namespace Netcorewebapi
             }
 
 
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
 
         }

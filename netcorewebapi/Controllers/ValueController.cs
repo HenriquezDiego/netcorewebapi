@@ -12,5 +12,12 @@ namespace Netcorewebapi.Controllers
         {
             return Ok(new[] {"Value1", "Value2", "Value3"});
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }
