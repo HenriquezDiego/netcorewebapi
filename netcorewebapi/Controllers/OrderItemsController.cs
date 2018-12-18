@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.DataAccess.Core;
 using System.Linq;
 
@@ -9,9 +10,10 @@ namespace Netcorewebapi.Controllers
     {
         private readonly IRepository _repository;
 
-        public OrderItemsController(IRepository repository)
+        public OrderItemsController(IRepository repository,IMapper mapper)
         {
             _repository = repository;
+            
         }
        
         [HttpGet]

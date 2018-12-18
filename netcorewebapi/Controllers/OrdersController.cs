@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace Netcorewebapi.Controllers
 {
@@ -10,11 +13,12 @@ namespace Netcorewebapi.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IRepository repository)
+        public OrdersController(IRepository repository,IMapper mapper)
         {
             _repository = repository;
-        
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -23,7 +27,7 @@ namespace Netcorewebapi.Controllers
             try
             {
                 var result = _repository.GetAllOrders(include);
-                return Ok(result);
+                return Ok(_mapper.Map<IEnumerable<Order>,IEnumerable<OrderViewModel>>(result));
             }
             catch (Exception ex)
             {
@@ -39,7 +43,7 @@ namespace Netcorewebapi.Controllers
             {
                 var order = _repository.GetOrderById(id);
                 if (order != null)
-                    return Ok(order);
+                    return Ok(_mapper.Map<Order,OrderViewModel>(order));
                   
                 return NotFound();
 

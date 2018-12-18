@@ -4,6 +4,7 @@ using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 
 namespace Netcorewebapi.Controllers
 {
@@ -12,10 +13,12 @@ namespace Netcorewebapi.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IRepository repository)
+        public ProductsController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         // GET: api/Products
@@ -23,9 +26,9 @@ namespace Netcorewebapi.Controllers
         public  ActionResult<IEnumerable<Product>> GetProducts()
         {
             var products = _repository.GetAllProducts();
-            if (EnumerableExtensions.Any(products))
+            if (products.Any())
             {
-                return Ok(products);
+                return Ok(_mapper.Map<IEnumerable<Product>,IEnumerable<ProductViewModel>>(products));
             }
 
             return BadRequest();

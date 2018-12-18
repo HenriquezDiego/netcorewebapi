@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +9,7 @@ using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
 
-namespace netcorewebapi
+namespace Netcorewebapi
 {
     public class Startup
     {
@@ -29,6 +30,8 @@ namespace netcorewebapi
             {
                 cfg.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAutoMapper();
 
             services.AddTransient<StoreTreat>();
             services.AddScoped<IRepository, Repository>();
