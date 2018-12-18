@@ -10,6 +10,8 @@ using Netcorewebapi.DataAccess.Persistence;
 using Netcorewebapi.Infrastructure.HttpErrors;
 using Netcorewebapi.Middleware;
 using Newtonsoft.Json;
+using FluentValidation.AspNetCore;
+using Netcorewebapi.Infrastructure;
 
 namespace Netcorewebapi
 {
@@ -25,7 +27,12 @@ namespace Netcorewebapi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore()
+            services
+                .AddMvcCore(conf=> conf.Filters.Add(typeof(ValidateModelAttribute)))
+                .AddFluentValidation(conf=>
+                {
+                    conf.RegisterValidatorsFromAssemblyContaining<Startup>();
+                })
                 .AddJsonFormatters()
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddDbContext<ApplicationDbContext>(cfg =>
@@ -34,10 +41,13 @@ namespace Netcorewebapi
             });
 
             services.AddAutoMapper();
-
             services.AddSingleton<IHttpErrorFactory,DefaultHttpErrorFactory>();
             services.AddTransient<StoreTreat>();
             services.AddScoped<IRepository, Repository>();
+
+            
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

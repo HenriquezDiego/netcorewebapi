@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Netcorewebapi.DataAccess.Core;
+using System.Threading.Tasks;
 
 namespace Netcorewebapi.DataAccess.Persistence
 {
@@ -78,15 +78,20 @@ namespace Netcorewebapi.DataAccess.Persistence
         {
             if (include)
             {
-
                 return Context.Order
-               .Include(o => o.Items)
-               .ThenInclude(i => i.Product)
-               .ToList();
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .ToList();
             }
 
             return Context.Order.ToList();
         }
 
+        public async Task<bool> AddEntityAsync(Product product)
+        {
+            Context.Products.Add(product);
+            var flag = await Context.SaveChangesAsync();
+            return flag > 0;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Netcorewebapi.DataAccess.Data.Entities;
 using Netcorewebapi.DataAccess.Persistence;
 
@@ -15,5 +16,6 @@ namespace Netcorewebapi.DataAccess.Core
         Product GetProductsById(int id);
         void AddEntityOrder(Order model);
         void AddEntity(Product product);
+        Task<bool> AddEntityAsync(Product product);
     }
 }

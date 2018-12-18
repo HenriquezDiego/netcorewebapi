@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 
 namespace Netcorewebapi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class ProductsController : ControllerBase
     {
         private readonly IRepository _repository;
@@ -48,10 +46,21 @@ namespace Netcorewebapi.Controllers
             return product;
         }
 
+        public async System.Threading.Tasks.Task<IActionResult> PostAsync([FromBody]Product product)
+        {
+            var flag = await _repository.AddEntityAsync(product);
+            if (flag)
+            {
+                //return Created($"/api/product/{product.Id}", product);
+                return CreatedAtAction("GetProduct", new {id = product.Id}, product);
+            }
+            return BadRequest("Failed to save new Order");
+
+        }
+
         private bool ProductExists(int id)
         {
-            if (_repository.GetAllProducts().Any(e => e.Id == id)) return true;
-            return false;
+            return _repository.GetAllProducts().Any(e => e.Id == id);
         }
     }
 }
