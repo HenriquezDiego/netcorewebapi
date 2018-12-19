@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.DataAccess.Core;
 using System.Linq;
 
-namespace Netcorewebapi.Controllers
+namespace Netcorewebapi.Api.Controllers
 {
     [Route("api/orders/{orderid}/items")]
     public class OrderItemsController : ControllerBase

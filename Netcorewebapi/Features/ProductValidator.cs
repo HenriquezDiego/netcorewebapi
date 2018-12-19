@@ -2,7 +2,7 @@
 using FluentValidation;
 using Netcorewebapi.DataAccess.Data.Entities;
 
-namespace Netcorewebapi.Features
+namespace Netcorewebapi.Api.Features
 {
     public class ProductValidator : AbstractValidator<Product>
     {

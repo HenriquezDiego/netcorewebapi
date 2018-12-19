@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Netcorewebapi.Common;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
@@ -92,6 +93,14 @@ namespace Netcorewebapi.DataAccess.Persistence
             Context.Products.Add(product);
             var flag = await Context.SaveChangesAsync();
             return flag > 0;
+        }
+
+        public PageResult<Product> GetProductsPage(ResourceParameters resourceParameters)
+        {
+            return Context.Products
+                .OrderBy(p => p.ArtDescription)
+                .ToPagedResult(resourceParameters.PageNumber,resourceParameters.PageSize);
+            
         }
     }
 }

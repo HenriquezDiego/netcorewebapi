@@ -1,4 +1,4 @@
-﻿namespace Netcorewebapi.ViewModels
+﻿namespace Netcorewebapi.Api.ViewModels
 {
     public class OrderItemViewModel
     {

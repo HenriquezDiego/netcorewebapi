@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Netcorewebapi.Infrastructure.HttpErrors
+namespace Netcorewebapi.Api.Infrastructure.HttpErrors
 {
     public interface IHttpErrorFactory
     {

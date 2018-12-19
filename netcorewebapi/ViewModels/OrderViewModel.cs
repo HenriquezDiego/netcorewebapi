@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Netcorewebapi.ViewModels
+namespace Netcorewebapi.Api.ViewModels
 {
     public class OrderViewModel
     {

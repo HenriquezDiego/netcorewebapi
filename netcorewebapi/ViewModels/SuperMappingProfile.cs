@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Netcorewebapi.Controllers;
 using Netcorewebapi.DataAccess.Data.Entities;
-using Netcorewebapi.ViewModels;
 
-namespace Netcorewebapi.Data
+namespace Netcorewebapi.Api.ViewModels
 {
     public class SuperMappingProfile : Profile
     {

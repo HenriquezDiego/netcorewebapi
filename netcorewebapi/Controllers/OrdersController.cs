@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
-using Netcorewebapi.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace Netcorewebapi.Controllers
+namespace Netcorewebapi.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

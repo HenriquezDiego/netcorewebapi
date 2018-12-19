@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Netcorewebapi.Infrastructure.HttpErrors;
+using Netcorewebapi.Api.Infrastructure.HttpErrors;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
-namespace Netcorewebapi.Middleware
+namespace Netcorewebapi.Api.Middleware
 {
     public class ErrorHandlerMiddleware
     {

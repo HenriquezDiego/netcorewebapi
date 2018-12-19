@@ -1,4 +1,4 @@
-﻿namespace Netcorewebapi.Controllers
+﻿namespace Netcorewebapi.Api.ViewModels
 {
     public class ProductViewModel
     {

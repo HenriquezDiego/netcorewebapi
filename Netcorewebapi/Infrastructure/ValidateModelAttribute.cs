@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 using System.Net;
-using Netcorewebapi.Infrastructure.HttpErrors;
+using Netcorewebapi.Api.Infrastructure.HttpErrors;
 
-namespace Netcorewebapi.Infrastructure
+namespace Netcorewebapi.Api.Infrastructure
 {
     internal class ValidateModelAttribute: ActionFilterAttribute
     {

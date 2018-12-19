@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Netcorewebapi.Api.Infrastructure;
+using Netcorewebapi.Api.Infrastructure.HttpErrors;
+using Netcorewebapi.Api.Middleware;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
-using Netcorewebapi.Infrastructure.HttpErrors;
-using Netcorewebapi.Middleware;
 using Newtonsoft.Json;
-using FluentValidation.AspNetCore;
-using Netcorewebapi.Infrastructure;
 
-namespace Netcorewebapi
+namespace Netcorewebapi.Api
 {
     public class Startup
     {
@@ -41,10 +44,18 @@ namespace Netcorewebapi
             });
 
             services.AddAutoMapper();
+           
             services.AddSingleton<IHttpErrorFactory,DefaultHttpErrorFactory>();
             services.AddTransient<StoreTreat>();
             services.AddScoped<IRepository, Repository>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+            services.AddScoped<IUrlHelper>(implementationFactory =>
+            {
+                var actionContext = implementationFactory.GetService<IActionContextAccessor>()
+                    .ActionContext;
+                return new UrlHelper(actionContext);
+            });
             
 
 

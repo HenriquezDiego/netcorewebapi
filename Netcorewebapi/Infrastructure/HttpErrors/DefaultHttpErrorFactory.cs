@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Netcorewebapi.Infrastructure.HttpErrors
+namespace Netcorewebapi.Api.Infrastructure.HttpErrors
 {
     public class DefaultHttpErrorFactory : IHttpErrorFactory
     {

@@ -4799,12 +4799,26 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Netcorewebapi.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "1.1.0"
+        },
+        "compile": {
+          "bin/placeholder/Netcorewebapi.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Netcorewebapi.Common.dll": {}
+        }
+      },
       "Netcorewebapi.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.0",
-          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.6"
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.6",
+          "Netcorewebapi.Common": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Netcorewebapi.DataAccess.dll": {}
@@ -13125,6 +13139,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Netcorewebapi.Common/1.0.0": {
+      "type": "project",
+      "path": "../Netcorewebapi.Common/Netcorewebapi.Common.csproj",
+      "msbuildProject": "../Netcorewebapi.Common/Netcorewebapi.Common.csproj"
+    },
     "Netcorewebapi.DataAccess/1.0.0": {
       "type": "project",
       "path": "../Netcorewebapi.DataAccess/Netcorewebapi.DataAccess.csproj",
@@ -13149,9 +13168,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi\\Netcorewebapi.csproj",
-      "projectName": "Netcorewebapi",
-      "projectPath": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi\\Netcorewebapi.csproj",
+      "projectUniqueName": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi\\Netcorewebapi.Api.csproj",
+      "projectName": "Netcorewebapi.Api",
+      "projectPath": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi\\Netcorewebapi.Api.csproj",
       "packagesPath": "C:\\Users\\Henriquez\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi\\obj\\",
       "projectStyle": "PackageReference",
