@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Netcorewebapi.Common.Helpers;
 
 namespace Netcorewebapi.Common
 {
@@ -10,7 +11,7 @@ namespace Netcorewebapi.Common
             _urlHelper = urlHelper;
         }
         public string CreateProductResourceUri(
-            ResourceParameters resourceParameters,
+            ProductParameters resourceParameters,
             ResourceUriType type,
             string routeName)
         {
@@ -20,26 +21,23 @@ namespace Netcorewebapi.Common
                     return _urlHelper.Link(routeName,
                       new
                       {
-                         
-                          pageNumber = resourceParameters.PageNumber - 1,
-                          pageSize = resourceParameters.PageSize
+                          page = resourceParameters.Page - 1,
+                          perpage = resourceParameters.PerPage
                       });
                 case ResourceUriType.NextPage:
                     return _urlHelper.Link(routeName,
                       new
                       {
-                        
-                          pageNumber = resourceParameters.PageNumber + 1,
-                          pageSize = resourceParameters.PageSize
+                          page = resourceParameters.Page + 1,
+                          perpage = resourceParameters.PerPage
                       });
 
                 default:
                     return _urlHelper.Link(routeName,
                     new
                     {
-                        
-                        pageNumber = resourceParameters.PageNumber,
-                        pageSize = resourceParameters.PageSize
+                        page = resourceParameters.Page,
+                        perpage = resourceParameters.PerPage
                     });
             }
         }

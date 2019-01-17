@@ -6,6 +6,7 @@ using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using Netcorewebapi.Api.ViewModels;
+using Netcorewebapi.Common.Helpers;
 
 namespace Netcorewebapi.Api.Controllers
 {
@@ -27,7 +28,7 @@ namespace Netcorewebapi.Api.Controllers
 
         // GET: api/Products
         [HttpGet(Name = "GetProducts")]
-        public  ActionResult<IEnumerable<Product>> GetProducts([FromQuery]ResourceParameters  resourceParameters)
+        public  ActionResult<IEnumerable<Product>> GetProducts([FromQuery]ProductParameters  resourceParameters)
         {
             var products = _repository.GetProductsPage(resourceParameters);
             var cResourceUri = new CreateResourceUri(_urlHelper); 

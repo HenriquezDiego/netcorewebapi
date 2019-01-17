@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Netcorewebapi.Common;
 using Netcorewebapi.DataAccess.Core;
@@ -6,6 +7,9 @@ using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Netcorewebapi.Common.Helpers;
+using System.Linq.Dynamic.Core;
+using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal;
 
 namespace Netcorewebapi.DataAccess.Persistence
 {
@@ -95,12 +99,44 @@ namespace Netcorewebapi.DataAccess.Persistence
             return flag > 0;
         }
 
-        public PageResult<Product> GetProductsPage(ResourceParameters resourceParameters)
+        public PageResult<Product> GetProductsPage(ProductParameters resourceParameters)
         {
-            return Context.Products
-                .OrderBy(p => p.ArtDescription)
-                .ToPagedResult(resourceParameters.PageNumber,resourceParameters.PageSize);
+            var collectionBeforePaging = Context.Products
+                                                .OrderBy(p => p.ArtDescription)
+                                                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(resourceParameters.Category))
+            {
+                // trim & ignore casing
+                var catForWhereClause = resourceParameters.Category
+                    .Trim().ToLowerInvariant();
+                collectionBeforePaging = collectionBeforePaging
+                    .Where(a => a.Category.ToLowerInvariant() == catForWhereClause);
+            }
+
+            
+            if (!string.IsNullOrEmpty(resourceParameters.SearchQuery))
+            {
+                // trim & ignore casing
+                var searchQueryForWhereClause = resourceParameters.SearchQuery
+                    .Trim().ToLowerInvariant();
+            
+                collectionBeforePaging = collectionBeforePaging.AsQueryable()
+                    .Where(a => a.Title.ToLowerInvariant().Contains(searchQueryForWhereClause)
+                              ||a.Category.ToLowerInvariant().Contains(searchQueryForWhereClause));
+
+
+
+            }
+
+            
+
+            return collectionBeforePaging
+                .ToPagedResult(resourceParameters.Page,resourceParameters.PerPage);
             
         }
+
+
+       
     }
 }
