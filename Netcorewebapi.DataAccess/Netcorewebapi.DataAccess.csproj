@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Netcorewebapi.Common\Netcorewebapi.Common.csproj" />
+    <ProjectReference Include="..\Netcorewebapi.Common\netcorewebapi.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

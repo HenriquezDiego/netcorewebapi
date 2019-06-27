@@ -1,15 +1,12 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Netcorewebapi.Common;
+using Netcorewebapi.Common.Helpers;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Netcorewebapi.Common.Helpers;
-using System.Linq.Dynamic.Core;
-using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal;
 
 namespace Netcorewebapi.DataAccess.Persistence
 {

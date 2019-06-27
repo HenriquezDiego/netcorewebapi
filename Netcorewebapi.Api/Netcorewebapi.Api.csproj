@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Netcorewebapi.DataAccess\Netcorewebapi.DataAccess.csproj" />
+    <ProjectReference Include="..\Netcorewebapi.DataAccess\netcorewebapi.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>
