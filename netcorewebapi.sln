@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.DataAccess", "Netcorewebapi.DataAccess\netcorewebapi.DataAccess.csproj", "{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.DataAccess", "netcorewebapi.DataAccess\netcorewebapi.DataAccess.csproj", "{86055364-F1BF-49AE-92A0-ECFA4A20FBBE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{30591B71-C7C5-4FCF-A8F6-FCCA71EC9FCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.Common", "Netcorewebapi.Common\netcorewebapi.Common.csproj", "{297008BB-6109-4D6E-9D68-5EE7ECD9C583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.Common", "netcorewebapi.Common\netcorewebapi.Common.csproj", "{297008BB-6109-4D6E-9D68-5EE7ECD9C583}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.Api", "Netcorewebapi.Api\netcorewebapi.Api.csproj", "{761EA0EA-6E8F-4491-B5CA-F5F500EB8A78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "netcorewebapi.Api", "netcorewebapi.Api\netcorewebapi.Api.csproj", "{761EA0EA-6E8F-4491-B5CA-F5F500EB8A78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

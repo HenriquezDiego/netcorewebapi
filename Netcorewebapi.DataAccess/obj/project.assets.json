@@ -5732,8 +5732,8 @@
     },
     "netcorewebapi.Common/1.0.0": {
       "type": "project",
-      "path": "../Netcorewebapi.Common/netcorewebapi.Common.csproj",
-      "msbuildProject": "../Netcorewebapi.Common/netcorewebapi.Common.csproj"
+      "path": "../netcorewebapi.Common/netcorewebapi.Common.csproj",
+      "msbuildProject": "../netcorewebapi.Common/netcorewebapi.Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5753,11 +5753,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Work\\netcorewebapi\\Netcorewebapi.DataAccess\\Netcorewebapi.DataAccess.csproj",
-      "projectName": "Netcorewebapi.DataAccess",
-      "projectPath": "D:\\Projects\\Work\\netcorewebapi\\Netcorewebapi.DataAccess\\Netcorewebapi.DataAccess.csproj",
+      "projectUniqueName": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi.DataAccess\\netcorewebapi.DataAccess.csproj",
+      "projectName": "netcorewebapi.DataAccess",
+      "projectPath": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi.DataAccess\\netcorewebapi.DataAccess.csproj",
       "packagesPath": "C:\\Users\\Henriquez\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Work\\netcorewebapi\\Netcorewebapi.DataAccess\\obj\\",
+      "outputPath": "D:\\Projects\\Work\\netcorewebapi\\netcorewebapi.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -10,7 +10,7 @@ namespace Netcorewebapi.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(new[] {"Value1", "Value2", "Value3"});
+            return Ok("200");
         }
 
         [HttpGet("{id}")]
