@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.Common;
+using Netcorewebapi.Common.Helpers;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using Netcorewebapi.Api.ViewModels;
-using Netcorewebapi.Common.Helpers;
 
 namespace Netcorewebapi.Api.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class ProductsController : ControllerBase
     {
         private readonly IRepository _repository;
@@ -83,11 +83,6 @@ namespace Netcorewebapi.Api.Controllers
             }
             return BadRequest("Failed to save new Order");
 
-        }
-
-        private bool ProductExists(int id)
-        {
-            return _repository.GetAllProducts().Any(e => e.Id == id);
         }
     }
 }

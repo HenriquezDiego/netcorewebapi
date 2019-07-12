@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.DataAccess.Core;
 using System.Linq;
 
 namespace Netcorewebapi.Api.Controllers
 {
     [Route("api/orders/{orderid}/items")]
+    [ApiController]
     public class OrderItemsController : ControllerBase
     {
         private readonly IRepository _repository;
 
-        public OrderItemsController(IRepository repository,IMapper mapper)
+        public OrderItemsController(IRepository repository)
         {
             _repository = repository;
             

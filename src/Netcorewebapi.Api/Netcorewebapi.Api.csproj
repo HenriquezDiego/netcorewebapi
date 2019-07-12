@@ -12,6 +12,7 @@
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
