@@ -2,6 +2,7 @@
   
   <PropertyGroup>
     <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+    <UserSecretsId>3898bd96-2d3b-42d2-b075-bb4736b77e8f</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="wwwroot\" />
