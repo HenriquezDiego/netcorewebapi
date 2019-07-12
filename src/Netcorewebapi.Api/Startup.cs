@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +44,7 @@ namespace Netcorewebapi.Api
                 cfg.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddAutoMapper();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
            
             services.AddSingleton<IHttpErrorFactory,DefaultHttpErrorFactory>();
             services.AddTransient<StoreTreat>();

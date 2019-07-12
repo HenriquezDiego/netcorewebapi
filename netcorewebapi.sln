@@ -5,11 +5,21 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7625AD23-0F5E-48DD-B41E-EAE0F16A843F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcorewebApi.Api", "src\Netcorewebapi.Api\NetcorewebApi.Api.csproj", "{D048CA63-894D-4A30-A590-7CC098DE5292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetcorewebApi.Api", "src\Netcorewebapi.Api\NetcorewebApi.Api.csproj", "{D048CA63-894D-4A30-A590-7CC098DE5292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcorewebApi.Common", "src\Netcorewebapi.Common\NetcorewebApi.Common.csproj", "{CF07A533-60D6-4102-90D4-B2A20C02BF1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetcorewebApi.Common", "src\Netcorewebapi.Common\NetcorewebApi.Common.csproj", "{CF07A533-60D6-4102-90D4-B2A20C02BF1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetcorewebApi.DataAccess", "src\Netcorewebapi.DataAccess\NetcorewebApi.DataAccess.csproj", "{4A35A5C6-206C-4DB4-87D8-7106F4F48407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetcorewebApi.DataAccess", "src\Netcorewebapi.DataAccess\NetcorewebApi.DataAccess.csproj", "{4A35A5C6-206C-4DB4-87D8-7106F4F48407}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{03714788-AF9E-413B-B3B2-5F6DBC858B41}"
+	ProjectSection(SolutionItems) = preProject
+		build\dependencies.props = build\dependencies.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{485550B1-F3C7-4D4D-A5B5-B9FC9D42D5DD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D048CA63-894D-4A30-A590-7CC098DE5292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -61,9 +68,15 @@ Global
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407}.Release|x86.ActiveCfg = Release|Any CPU
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D048CA63-894D-4A30-A590-7CC098DE5292} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
 		{CF07A533-60D6-4102-90D4-B2A20C02BF1B} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86AFF650-E972-4830-839A-4E19C8C1BF4F}
 	EndGlobalSection
 EndGlobal

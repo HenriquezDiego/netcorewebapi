@@ -1,0 +1,15 @@
+﻿<Project>
+  <PropertyGroup Label="SDK Versions">
+    <NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>
+    <NetCoreTargetVersion>netcoreapp2.2</NetCoreTargetVersion>
+  </PropertyGroup>
+     
+  <PropertyGroup Label="Package Versions">
+    <MicrosoftEntityFrameworkCoreVersion>2.2.6</MicrosoftEntityFrameworkCoreVersion>
+    <MicrosoftEntityFrameworkCoreDesignVersion>2.2.6</MicrosoftEntityFrameworkCoreDesignVersion>
+    <AutoMapperExtensionsMicrosoftDependencyInjectionVersion>6.1.1</AutoMapperExtensionsMicrosoftDependencyInjectionVersion>
+    <FluentValidationAspNetCore>8.4.0</FluentValidationAspNetCore>
+    <MicrosoftAspNetCoreApp>2.2.6</MicrosoftAspNetCoreApp>
+    <AutoMapper>8.1.1</AutoMapper>
+  </PropertyGroup>
+</Project>
