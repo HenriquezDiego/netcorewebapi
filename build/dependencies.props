@@ -9,7 +9,7 @@
     <MicrosoftEntityFrameworkCoreDesignVersion>2.2.6</MicrosoftEntityFrameworkCoreDesignVersion>
     <AutoMapperExtensionsMicrosoftDependencyInjectionVersion>6.1.1</AutoMapperExtensionsMicrosoftDependencyInjectionVersion>
     <FluentValidationAspNetCore>8.4.0</FluentValidationAspNetCore>
-    <MicrosoftAspNetCoreApp>2.2.6</MicrosoftAspNetCoreApp>
+    <!--<MicrosoftAspNetCoreAppVersion>2.2.0</MicrosoftAspNetCoreAppVersion>-->
     <AutoMapper>8.1.1</AutoMapper>
   </PropertyGroup>
 </Project>
