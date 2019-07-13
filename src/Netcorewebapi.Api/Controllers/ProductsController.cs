@@ -6,6 +6,7 @@ using Netcorewebapi.Common.Helpers;
 using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Netcorewebapi.Api.Controllers
 {
@@ -73,7 +74,8 @@ namespace Netcorewebapi.Api.Controllers
             return product;
         }
 
-        public async System.Threading.Tasks.Task<IActionResult> PostAsync([FromBody]Product product)
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody]Product product)
         {
             var flag = await _repository.AddEntityAsync(product);
             if (flag)

@@ -13,6 +13,7 @@ using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace Netcorewebapi.Api
@@ -33,6 +34,7 @@ namespace Netcorewebapi.Api
         {
             services
                 .AddMvcCore()
+                .AddApiExplorer()
                 .AddFluentValidation(conf=>
                 {
                     conf.RegisterValidatorsFromAssemblyContaining<Startup>();
@@ -66,7 +68,10 @@ namespace Netcorewebapi.Api
                 return new UrlHelper(actionContext);
             });
             
-
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info{ Title = "NetcorewebApi", Version = "v1" });
+            });
 
         }
 
@@ -92,6 +97,15 @@ namespace Netcorewebapi.Api
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseProblemDetails();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetcorewebApi");
+            });
             app.UseMvc();
 
         }

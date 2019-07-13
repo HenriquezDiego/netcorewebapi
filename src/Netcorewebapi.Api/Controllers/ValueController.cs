@@ -19,5 +19,12 @@ namespace Netcorewebapi.Api.Controllers
             throw new System.NotImplementedException();
         }
 
+        [HttpGet("/")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult Swagger()
+        {
+            return Redirect("/swagger");
+        }
+
     }
 }
