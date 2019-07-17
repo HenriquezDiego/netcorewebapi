@@ -1,6 +1,6 @@
 ﻿
 using FluentValidation;
-using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.DataAccess.Entities;
 
 namespace Netcorewebapi.Api.Features
 {

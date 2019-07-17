@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Netcorewebapi.DataAccess.Data.Entities
+namespace Netcorewebapi.DataAccess.Entities
 {
   public class Order
   {

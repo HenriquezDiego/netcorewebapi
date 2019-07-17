@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.DataAccess.Core;
-using Netcorewebapi.DataAccess.Data.Entities;
 using System;
 using System.Collections.Generic;
+using Netcorewebapi.DataAccess.Entities;
 
 namespace Netcorewebapi.Api.Controllers
 {
@@ -48,7 +48,7 @@ namespace Netcorewebapi.Api.Controllers
                 return NotFound();
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest($"Failed to get Orders {ex}");
             }

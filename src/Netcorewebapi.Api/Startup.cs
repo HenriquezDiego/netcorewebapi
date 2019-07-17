@@ -1,20 +1,10 @@
-﻿using AutoMapper;
-using FluentValidation.AspNetCore;
-using Hellang.Middleware.ProblemDetails;
+﻿using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
-using Netcorewebapi.DataAccess.Persistence;
-using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
+using NetcorewebApi.Api.Extensions;
 
 namespace Netcorewebapi.Api
 {
@@ -32,46 +22,10 @@ namespace Netcorewebapi.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddMvcCore()
-                .AddApiExplorer()
-                .AddFluentValidation(conf=>
-                {
-                    conf.RegisterValidatorsFromAssemblyContaining<Startup>();
-                })
-                .AddJsonFormatters()
-                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-            services.AddDbContext<ApplicationDbContext>(cfg =>
-            {
-                cfg.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
-            });
-
-
-            services.AddProblemDetails(
-                setup =>
-                {
-                    setup.IncludeExceptionDetails = _ => _env.IsDevelopment(); 
-
-                });
-
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-           
-            //services.AddSingleton<IHttpErrorFactory,DefaultHttpErrorFactory>();
-            services.AddTransient<StoreTreat>();
-            services.AddScoped<IRepository, Repository>();
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-
-            services.AddScoped<IUrlHelper>(implementationFactory =>
-            {
-                var actionContext = implementationFactory.GetService<IActionContextAccessor>()
-                    .ActionContext;
-                return new UrlHelper(actionContext);
-            });
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info{ Title = "NetcorewebApi", Version = "v1" });
-            });
+            services.AddCustomConfig()
+                    .AddAppContext(_config)
+                    .AddCustomServices(_env)
+                    .AddSwagger();
 
         }
 

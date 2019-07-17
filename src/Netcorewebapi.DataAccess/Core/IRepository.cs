@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Netcorewebapi.Common;
+﻿using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;
-using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.DataAccess.Entities;
 using Netcorewebapi.DataAccess.Persistence;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Netcorewebapi.DataAccess.Core
 {

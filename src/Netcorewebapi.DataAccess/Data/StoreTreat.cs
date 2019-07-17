@@ -1,11 +1,11 @@
-﻿using Netcorewebapi.DataAccess.Persistence;
+﻿using Microsoft.AspNetCore.Hosting;
+using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.DataAccess.Entities;
 
 namespace Netcorewebapi.DataAccess.Data
 {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;
 using Netcorewebapi.DataAccess.Core;
-using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.DataAccess.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

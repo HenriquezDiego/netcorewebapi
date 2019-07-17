@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Netcorewebapi.DataAccess.Data.Entities;
+using Netcorewebapi.DataAccess.Entities;
 
 namespace Netcorewebapi.DataAccess.Persistence
 {

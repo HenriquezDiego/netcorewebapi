@@ -1,4 +1,4 @@
-﻿namespace Netcorewebapi.DataAccess.Data.Entities
+﻿namespace Netcorewebapi.DataAccess.Entities
 {
   public class OrderItem
   {
