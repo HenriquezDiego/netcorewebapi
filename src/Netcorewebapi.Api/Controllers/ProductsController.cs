@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Netcorewebapi.Api.Helpers;
 using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;

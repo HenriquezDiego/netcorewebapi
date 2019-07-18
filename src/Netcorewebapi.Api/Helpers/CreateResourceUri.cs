@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;
 
-namespace Netcorewebapi.Common
+namespace Netcorewebapi.Api.Helpers
 {
     public class CreateResourceUri
     {

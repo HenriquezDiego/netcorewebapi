@@ -8,7 +8,8 @@
     <MicrosoftEntityFrameworkCoreVersion>2.2.6</MicrosoftEntityFrameworkCoreVersion>
     <MicrosoftEntityFrameworkCoreDesignVersion>2.2.6</MicrosoftEntityFrameworkCoreDesignVersion>
     <AutoMapperExtensionsMicrosoftDependencyInjectionVersion>6.1.1</AutoMapperExtensionsMicrosoftDependencyInjectionVersion>
-    <FluentValidationAspNetCore>8.4.0</FluentValidationAspNetCore>
+    <FluentValidationAspNetCoreVersion>8.4.0</FluentValidationAspNetCoreVersion>
+    <NewtonsoftJsonVersion>12.0.2</NewtonsoftJsonVersion>
     <!--<MicrosoftAspNetCoreAppVersion>2.2.0</MicrosoftAspNetCoreAppVersion>-->
     <AutoMapper>8.1.1</AutoMapper>
   </PropertyGroup>
