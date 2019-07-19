@@ -1,24 +1,19 @@
-﻿using Netcorewebapi.Common;
-using Netcorewebapi.Common.Helpers;
-using Netcorewebapi.DataAccess.Entities;
-using Netcorewebapi.DataAccess.Persistence;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
-namespace Netcorewebapi.DataAccess.Core
+namespace ContaWebApi.DataAccess.Core.IRepositories
 {
-    public interface IRepository
+    public interface IRepository<TEntity> where TEntity : class
     {
-        ApplicationDbContext Context { get; }
-        IEnumerable<Order> GetAllOrders();
-        IEnumerable<Order> GetAllOrders(bool include);
-        IEnumerable<Product> GetAllProducts();
-        IEnumerable<Product> GetProductsByCategory(string category);
-        Order GetOrderById(int id);
-        Product GetProductsById(int id);
-        void AddEntityOrder(Order model);
-        void AddEntity(Product product);
-        Task<bool> AddEntityAsync(Product product);
-        PageResult<Product> GetProductsPage(ProductParameters resourceParameters);
+        TEntity Get(int id);
+        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
+        void Remove(TEntity entity);
+        void RemoveRange(IEnumerable<TEntity> entities);
+        bool Save();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Netcorewebapi.DataAccess.Core;
-using System.Linq;
+using NetcorewebApi.DataAccess.Core;
 
 namespace Netcorewebapi.Api.Controllers
 {
@@ -8,18 +7,17 @@ namespace Netcorewebapi.Api.Controllers
     [ApiController]
     public class OrderItemsController : ControllerBase
     {
-        private readonly IRepository _repository;
+        private readonly IOrderRepository _repository;
 
-        public OrderItemsController(IRepository repository)
+        public OrderItemsController(IOrderRepository repository)
         {
             _repository = repository;
-            
         }
        
         [HttpGet]
         public IActionResult Get(int orderId) {
 
-            var order = _repository.GetOrderById(orderId);
+            var order = _repository.GetOrderItems(orderId);
             if (order != null)
             {
                 return Ok(order.Items);
@@ -32,12 +30,9 @@ namespace Netcorewebapi.Api.Controllers
         public IActionResult Get(int orderId, int id)
         {
 
-            var order = _repository.GetOrderById(orderId);
-            if (order == null) return NotFound();
-            var item = order.Items
-                .FirstOrDefault(i => i.Id == id);
-            if(item != null) return Ok(item);
-            return NotFound();
+            var item = _repository.GetItemByOrderId(orderId,id);
+            if (item == null) return NotFound();
+            return Ok(item);
 
         }
     }

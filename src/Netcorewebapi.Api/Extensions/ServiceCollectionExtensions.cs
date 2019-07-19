@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation.AspNetCore;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Hosting;
@@ -10,11 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Netcorewebapi.Api;
-using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using NetcorewebApi.DataAccess.Core;
+using NetcorewebApi.DataAccess.Persistence.Repositories;
 
 namespace NetcorewebApi.Api.Extensions
 {
@@ -56,8 +57,11 @@ namespace NetcorewebApi.Api.Extensions
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddTransient<StoreTreat>();
-            services.AddScoped<IRepository, Repository>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
+            services.AddScoped<DbContext,ApplicationDbContext>();
+            services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped<IOrderRepository,OrderRepository>();
 
             services.AddScoped<IUrlHelper>(implementationFactory =>
             {

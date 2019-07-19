@@ -1,139 +1,71 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Netcorewebapi.Common;
-using Netcorewebapi.Common.Helpers;
-using Netcorewebapi.DataAccess.Core;
-using Netcorewebapi.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+using ContaWebApi.DataAccess.Core.IRepositories;
+using Netcorewebapi.DataAccess.Persistence;
 
-namespace Netcorewebapi.DataAccess.Persistence
+namespace ContaWebApi.DataAccess.Repositories
 {
-    public class Repository : IRepository
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        public ApplicationDbContext Context { get; }
-        private ILogger<Repository> Logger { get; }
+        protected readonly DbContext Context;
 
-        public Repository(ApplicationDbContext context, ILogger<Repository> logger)
+        private readonly DbSet<TEntity> _dbSet;
+
+        public Repository(DbContext context)
         {
             Context = context;
-            Logger = logger;
-        }
-
-
-        public IEnumerable<Product> GetAllProducts() {
-            Logger.LogInformation("GetAllProducts was called");
-            return Context.Products
-                    .OrderBy(p => p.Title)
-                    .ToList();
+            _dbSet = context.Set<TEntity>();
 
         }
 
-        public IEnumerable<Product> GetProductsByCategory(string category) {
-
-            return Context.Products
-                           .Where(c => c.Category == category)
-                           .ToList();
+        public TEntity Get(int id)
+        {   
+            return _dbSet.Find(id);
         }
 
-        
-
-        public IEnumerable<Order> GetAllOrders()
+        public virtual IEnumerable<TEntity> GetAll()
         {
-            return Context.Order
-                .Include(o => o.Items)
-                .ThenInclude(i=> i.Product)
-                .ToList();
+         
+            return _dbSet.ToList();
         }
 
-        public Order GetOrderById(int id)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-
-            return Context.Order
-                    .Include(o => o.Items)
-                    .ThenInclude(i => i.Product)
-                    .FirstOrDefault(o => o.Id == id);
+            return _dbSet.Where(predicate);
         }
 
-        public void AddEntityOrder(Order model)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            Context.Add(model);
-
-            Context.SaveChanges();
+            return _dbSet.SingleOrDefault(predicate);
         }
 
-        public void AddEntity(Product model)
+        public void Add(TEntity entity)
         {
-            Context.Add(model);
-            Context.SaveChanges();
+            _dbSet.Add(entity);
         }
 
-        public Product GetProductsById(int id)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
-            var product = Context.Products.FirstOrDefault(p => p.Id == id);
-            
-            return product;
+            _dbSet.AddRange(entities);
         }
 
-        public IEnumerable<Order> GetAllOrders(bool include)
+        public void Remove(TEntity entity)
         {
-            if (include)
-            {
-                return Context.Order
-                    .Include(o => o.Items)
-                    .ThenInclude(i => i.Product)
-                    .ToList();
-            }
-
-            return Context.Order.ToList();
+            _dbSet.Remove(entity);
         }
 
-        public async Task<bool> AddEntityAsync(Product product)
+        public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            Context.Products.Add(product);
-            var flag = await Context.SaveChangesAsync();
-            return flag > 0;
+            _dbSet.RemoveRange(entities);
         }
 
-        public PageResult<Product> GetProductsPage(ProductParameters resourceParameters)
+        public bool Save()
         {
-            var collectionBeforePaging = Context.Products
-                                                .OrderBy(p => p.ArtDescription)
-                                                .AsQueryable();
+            return Context.SaveChanges() > 0;
 
-            if (!string.IsNullOrEmpty(resourceParameters.Category))
-            {
-                // trim & ignore casing
-                var catForWhereClause = resourceParameters.Category
-                    .Trim().ToLowerInvariant();
-                collectionBeforePaging = collectionBeforePaging
-                    .Where(a => a.Category.ToLowerInvariant() == catForWhereClause);
-            }
-
-            
-            if (!string.IsNullOrEmpty(resourceParameters.SearchQuery))
-            {
-                // trim & ignore casing
-                var searchQueryForWhereClause = resourceParameters.SearchQuery
-                    .Trim().ToLowerInvariant();
-            
-                collectionBeforePaging = collectionBeforePaging.AsQueryable()
-                    .Where(a => a.Title.ToLowerInvariant().Contains(searchQueryForWhereClause)
-                              ||a.Category.ToLowerInvariant().Contains(searchQueryForWhereClause));
-
-
-
-            }
-
-            
-
-            return collectionBeforePaging
-                .ToPagedResult(resourceParameters.Page,resourceParameters.PerPage);
-            
         }
-
-
-       
     }
 }

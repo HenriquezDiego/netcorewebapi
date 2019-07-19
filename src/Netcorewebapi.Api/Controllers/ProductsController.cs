@@ -4,10 +4,9 @@ using Netcorewebapi.Api.Helpers;
 using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;
-using Netcorewebapi.DataAccess.Core;
 using Netcorewebapi.DataAccess.Entities;
+using NetcorewebApi.DataAccess.Persistence.Repositories;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Netcorewebapi.Api.Controllers
 {
@@ -15,11 +14,11 @@ namespace Netcorewebapi.Api.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IRepository _repository;
+        private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
         private readonly IUrlHelper _urlHelper;
 
-        public ProductsController(IRepository repository, 
+        public ProductsController(IProductRepository repository, 
             IMapper mapper,
             IUrlHelper iUrlHelper)
         {
@@ -32,7 +31,7 @@ namespace Netcorewebapi.Api.Controllers
         [HttpGet(Name = "GetProducts")]
         public  ActionResult<IEnumerable<Product>> GetProducts([FromQuery]ProductParameters  resourceParameters)
         {
-            var products = _repository.GetProductsPage(resourceParameters);
+            var products = _repository.GetProductspaged(resourceParameters);
             var cResourceUri = new CreateResourceUri(_urlHelper); 
             
 
@@ -65,7 +64,7 @@ namespace Netcorewebapi.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<Product> GetProduct(int id)
         {
-            var product =_repository.GetProductsById(id);
+            var product =_repository.Get(id);
 
             if (product == null)
             {
@@ -76,10 +75,11 @@ namespace Netcorewebapi.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]Product product)
+        public  IActionResult Post([FromBody]Product product)
         {
-            var flag = await _repository.AddEntityAsync(product);
-            if (flag)
+            _repository.Add(product);
+            
+            if (_repository.Save())
             {
                 //return Created($"/api/product/{product.Id}", product);
                 return CreatedAtAction("GetProduct", new {id = product.Id}, product);
