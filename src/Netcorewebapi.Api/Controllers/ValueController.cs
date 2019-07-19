@@ -9,13 +9,7 @@ namespace Netcorewebapi.Api.Controllers
     {
         [HttpGet]
         public IActionResult Get()
-        {
-            return Ok("200");
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
+        { 
             throw new System.NotImplementedException();
         }
 
