@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ContaWebApi.DataAccess.Core.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using ContaWebApi.DataAccess.Core.IRepositories;
-using Netcorewebapi.DataAccess.Persistence;
+using System.Threading.Tasks;
 
 namespace ContaWebApi.DataAccess.Repositories
 {
@@ -31,7 +31,15 @@ namespace ContaWebApi.DataAccess.Repositories
          
             return _dbSet.ToList();
         }
+        public Task<TEntity> GetAsync(int id)
+        {
+            return _dbSet.FindAsync(id);
+        }
 
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbSet.Where(predicate);
@@ -66,6 +74,11 @@ namespace ContaWebApi.DataAccess.Repositories
         {
             return Context.SaveChanges() > 0;
 
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            return await Context.SaveChangesAsync()>0;
         }
     }
 }
