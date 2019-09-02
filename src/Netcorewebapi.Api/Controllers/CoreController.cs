@@ -1,56 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace NetcorewebApi.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CoreController<TEntity,TParameters> : ControllerBase
+    public abstract class CoreController<TEntity,TParameters> : ControllerBase 
     {
-        
-        [HttpGet]
-        public virtual IActionResult Get(TParameters parameters)
+        protected readonly IMapper Mapper;
+        protected readonly ILogger<TEntity> Logger;
+        protected CoreController(
+            IMapper mapper,
+            ILogger<TEntity> logger)
         {
-            return null;
+            Mapper = mapper;
+            Logger = logger;
         }
+
+        [HttpGet]
+        public abstract IActionResult GetAll(TParameters parameters);
 
         [HttpGet("{id}")]
-        public virtual IActionResult Get(int id) 
-        {
-            return null;
-        }
+        public abstract IActionResult Get(int id);
 
-        [HttpGet(template:"Async")]
-        public virtual Task<IActionResult> GetAsync(TParameters parameters)
-        {
-            return null;
-        }
+        [HttpGet("Async")]
+        public abstract Task<IActionResult> GetAllAsync(TParameters parameters);
 
         [HttpGet("Async/{id}")]
-        public virtual Task<IActionResult> GetAsync(int id) 
-        {
-            return null;
-        }
+        public abstract IActionResult GetAsync(int id);
 
         [HttpPost]
-        public virtual IActionResult Post(TEntity model)
-        {
-            return null;
-        }
+        public abstract IActionResult Post(TEntity model);
 
         [HttpPut("{id}")]
-        public virtual IActionResult Put(int id, TEntity model)
-        {
-            return null;
-        }
+        public abstract IActionResult Put(int id,TEntity model);
 
         [HttpDelete("{id}")]
-        public virtual IActionResult Delete(int id)
-        {
-            
-            return null;
-            
-        }
+        public abstract IActionResult Delete(int id);
 
     }
 }
+
