@@ -6,7 +6,6 @@ using NetcorewebApi.DataAccess.Persistence.Repositories;
 
 namespace NetcorewebApi.Api.Controllers
 {
-    [Route("api/[controller]")]
     public class TestController : CoreController<Product,ProductParameters>
     {
         private readonly IProductRepository _repository;

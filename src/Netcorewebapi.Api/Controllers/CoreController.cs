@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 namespace NetcorewebApi.Api.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class CoreController<TEntity,TParameters> : ControllerBase
     {
         
@@ -19,13 +20,13 @@ namespace NetcorewebApi.Api.Controllers
             return null;
         }
 
-        [HttpGet(template:"/GetAsync")]
+        [HttpGet(template:"Async")]
         public virtual Task<IActionResult> GetAsync(TParameters parameters)
         {
             return null;
         }
 
-        [HttpGet("/GetAsync/{id}")]
+        [HttpGet("Async/{id}")]
         public virtual Task<IActionResult> GetAsync(int id) 
         {
             return null;
