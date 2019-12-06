@@ -11,13 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Netcorewebapi.Api;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
-using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using NetcorewebApi.DataAccess.Core;
 using NetcorewebApi.DataAccess.Persistence.Repositories;
 using Microsoft.Extensions.Hosting;
-using Swashbuckle.Swagger;
 
 namespace NetcorewebApi.Api.Extensions
 {
