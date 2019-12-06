@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using System.Net;
 
 namespace Netcorewebapi.Api.Infrastructure.HttpErrors
@@ -24,7 +25,7 @@ namespace Netcorewebapi.Api.Infrastructure.HttpErrors
         }
 
         public static HttpError Create(
-            IHostingEnvironment environment,
+            IHostEnvironment environment,
             HttpStatusCode status,
             string code,
             string [] userMessage,

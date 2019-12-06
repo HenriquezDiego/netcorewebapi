@@ -31,9 +31,9 @@ namespace ContaWebApi.DataAccess.Repositories
          
             return _dbSet.ToList();
         }
-        public Task<TEntity> GetAsync(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
-            return _dbSet.FindAsync(id);
+            return await _dbSet.FindAsync(id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()

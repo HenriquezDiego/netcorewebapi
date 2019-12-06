@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -7,10 +8,10 @@ namespace Netcorewebapi.Api.Infrastructure.HttpErrors
 {
     public class DefaultHttpErrorFactory : IHttpErrorFactory
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IHostEnvironment _env;
         private readonly IDictionary<Type, Func<Exception, HttpError>> _factory;
 
-        public DefaultHttpErrorFactory(IHostingEnvironment env)
+        public DefaultHttpErrorFactory(IHostEnvironment env)
         {
             _env = env;
 

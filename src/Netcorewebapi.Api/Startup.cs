@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Netcorewebapi.DataAccess.Data;
 using NetcorewebApi.Api.Extensions;
 
@@ -11,9 +12,9 @@ namespace Netcorewebapi.Api
     public class Startup
     {
         private readonly IConfiguration _config;
-        private readonly IHostingEnvironment _env;
+        private readonly IHostEnvironment _env;
 
-        public Startup(IConfiguration config, IHostingEnvironment env)
+        public Startup(IConfiguration config, IHostEnvironment env)
         {
             _config = config;
             _env = env;
@@ -22,6 +23,8 @@ namespace Netcorewebapi.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options => options.EnableEndpointRouting = false);
+
             services.AddCustomConfig()
                     .AddAppContext(_config)
                     .AddCustomServices(_env)
@@ -30,7 +33,7 @@ namespace Netcorewebapi.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

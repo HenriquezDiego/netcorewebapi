@@ -16,6 +16,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using NetcorewebApi.DataAccess.Core;
 using NetcorewebApi.DataAccess.Persistence.Repositories;
+using Microsoft.Extensions.Hosting;
+using Swashbuckle.Swagger;
 
 namespace NetcorewebApi.Api.Extensions
 {
@@ -26,12 +28,11 @@ namespace NetcorewebApi.Api.Extensions
             services
                 .AddMvcCore()
                 .AddApiExplorer()
-                .AddFluentValidation(conf=>
+                .AddFluentValidation(conf =>
                 {
                     conf.RegisterValidatorsFromAssemblyContaining<Startup>();
                 })
-                .AddJsonFormatters()
-                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+                .AddNewtonsoftJson();
             return services;
         }
 
@@ -45,7 +46,7 @@ namespace NetcorewebApi.Api.Extensions
             return services;
         }
 
-        public static IServiceCollection AddCustomServices(this IServiceCollection services,IHostingEnvironment env)
+        public static IServiceCollection AddCustomServices(this IServiceCollection services, IHostEnvironment env)
         {
             services.AddProblemDetails(
                 setup =>
@@ -77,7 +78,7 @@ namespace NetcorewebApi.Api.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info{ Title = "NetcorewebApi", Version = "v1" });
+                c.SwaggerDoc("v1",new Microsoft.OpenApi.Models.OpenApiInfo { Title = "NetcorewebApi", Version = "v1" });
             });
             return services;
         }
