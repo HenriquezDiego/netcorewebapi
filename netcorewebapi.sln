@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\IdentityServer\IdentityServer.csproj", "{942A94CB-E81F-45B1-8220-02F238571802}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,18 @@ Global
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407}.Release|x64.Build.0 = Release|Any CPU
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407}.Release|x86.ActiveCfg = Release|Any CPU
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407}.Release|x86.Build.0 = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|x64.Build.0 = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Debug|x86.Build.0 = Debug|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|x64.ActiveCfg = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|x64.Build.0 = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|x86.ActiveCfg = Release|Any CPU
+		{942A94CB-E81F-45B1-8220-02F238571802}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +89,7 @@ Global
 		{D048CA63-894D-4A30-A590-7CC098DE5292} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
 		{CF07A533-60D6-4102-90D4-B2A20C02BF1B} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
 		{4A35A5C6-206C-4DB4-87D8-7106F4F48407} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
+		{942A94CB-E81F-45B1-8220-02F238571802} = {7625AD23-0F5E-48DD-B41E-EAE0F16A843F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86AFF650-E972-4830-839A-4E19C8C1BF4F}
