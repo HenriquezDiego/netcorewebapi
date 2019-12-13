@@ -8,6 +8,6 @@ namespace Netcorewebapi.Api.ViewModels
         public int OrderId { get; set; }
         public DateTime OrderDate{ get; set; }
         public string OrderNumber { get; set; }
-        public ICollection<OrderItemViewModel> Items { get; set; }
+        public IEnumerable<OrderItemViewModel> Items { get; set; }
     }
 }

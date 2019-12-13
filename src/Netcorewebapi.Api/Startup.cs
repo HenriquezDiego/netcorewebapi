@@ -30,15 +30,23 @@ namespace Netcorewebapi.Api
                     .AddCustomServices(_env)
                     .AddSwagger();
 
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", opt =>
+                {
+                    opt.Authority = "http://localhost:5000";
+                    opt.RequireHttpsMetadata = false;
+                    opt.Audience = "netcoreapi";
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();
-                using (var scope = app.ApplicationServices.CreateScope())
+                using (var scope = app?.ApplicationServices.CreateScope())
                 {
                     var seeder = scope.ServiceProvider.GetService<StoreTreat>();
                     seeder.Seed();
@@ -49,11 +57,16 @@ namespace Netcorewebapi.Api
                 app.UseHsts();
             }
 
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             //app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
+            
             app.UseProblemDetails();
+
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 

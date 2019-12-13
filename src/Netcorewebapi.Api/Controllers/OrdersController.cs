@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.Api.ViewModels;
 using Netcorewebapi.DataAccess.Entities;
 using NetcorewebApi.DataAccess.Core;
+using System;
 using System.Collections.Generic;
 
 namespace Netcorewebapi.Api.Controllers
@@ -43,7 +44,8 @@ namespace Netcorewebapi.Api.Controllers
         public IActionResult Post([FromBody]Order model) {
 
             _repository.Add(model);
-            if(_repository.Save()) return Created($"/api/orders/{model.Id}", model);
+           
+            if (_repository.Save()) return Created(new Uri($"/api/orders/{model?.Id}"), model);
             return BadRequest();
         }
 

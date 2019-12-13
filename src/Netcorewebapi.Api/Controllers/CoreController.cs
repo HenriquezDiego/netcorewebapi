@@ -9,8 +9,8 @@ namespace NetcorewebApi.Api.Controllers
     [Route("api/[controller]")]
     public abstract class CoreController<TEntity,TParameters> : ControllerBase 
     {
-        protected readonly IMapper Mapper;
-        protected readonly ILogger<TEntity> Logger;
+        internal readonly IMapper Mapper;
+        internal readonly ILogger<TEntity> Logger;
         protected CoreController(
             IMapper mapper,
             ILogger<TEntity> logger)
@@ -23,7 +23,7 @@ namespace NetcorewebApi.Api.Controllers
         public abstract IActionResult GetAll(TParameters parameters);
 
         [HttpGet("{id}")]
-        public abstract IActionResult Get(int id);
+        public  abstract IActionResult GetById(int id);
 
         [HttpGet("Async")]
         public abstract Task<IActionResult> GetAllAsync(TParameters parameters);

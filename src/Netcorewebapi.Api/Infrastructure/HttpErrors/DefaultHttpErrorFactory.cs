@@ -23,7 +23,7 @@ namespace Netcorewebapi.Api.Infrastructure.HttpErrors
 
         public HttpError CreateFrom(Exception exception)
         {
-            if (_factory.TryGetValue(exception.GetType(), out Func<Exception, HttpError> func))
+            if (_factory.TryGetValue(exception?.GetType(), out Func<Exception, HttpError> func))
             {
                 return func(exception);
             }

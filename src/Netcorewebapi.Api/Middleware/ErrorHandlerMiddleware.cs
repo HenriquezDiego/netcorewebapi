@@ -31,13 +31,15 @@ namespace Netcorewebapi.Api.Middleware
             try
             {
               
-                await _next(context);
+                await _next(context).ConfigureAwait(false);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception exception)
+#pragma warning restore CA1031 // Do not catch general exception types
             {
                // _telemetryClient.TrackException(exception);
                 _logger.LogError(exception.HResult, exception, exception.Message);
-                await CreateHttpError(context, exception);
+                await CreateHttpError(context, exception).ConfigureAwait(false);
             }
         }
 
@@ -49,7 +51,7 @@ namespace Netcorewebapi.Api.Middleware
                 context,
                 JsonConvert.SerializeObject(error),
                 "application/json",
-                error.Status);
+                error.Status).ConfigureAwait(false);
         }
 
         private static Task WriteResponseAsync(

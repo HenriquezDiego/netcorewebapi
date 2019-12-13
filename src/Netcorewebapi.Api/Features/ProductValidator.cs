@@ -4,9 +4,9 @@ using Netcorewebapi.DataAccess.Entities;
 
 namespace Netcorewebapi.Api.Features
 {
-    public class ProductValidator : AbstractValidator<Product>
+    public class ProductValidatorCollection : AbstractValidator<Product>
     {
-        public ProductValidator()
+        public ProductValidatorCollection()
         {
             RuleFor(product => product.Title)
                 .NotEmpty()

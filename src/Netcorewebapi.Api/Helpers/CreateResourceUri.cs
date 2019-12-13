@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Netcorewebapi.Common;
 using Netcorewebapi.Common.Helpers;
+using System;
 
 namespace Netcorewebapi.Api.Helpers
 {
@@ -11,7 +12,7 @@ namespace Netcorewebapi.Api.Helpers
         {
             _urlHelper = urlHelper;
         }
-        public string CreateProductResourceUri(
+        public Uri CreateProductResourceUri(
             ProductParameters resourceParameters,
             ResourceUriType type,
             string routeName)
@@ -19,27 +20,27 @@ namespace Netcorewebapi.Api.Helpers
             switch (type)
             {
                 case ResourceUriType.PreviousPage:
-                    return _urlHelper.Link(routeName,
+                    return new Uri(_urlHelper.Link(routeName,
                       new
                       {
-                          page = resourceParameters.Page - 1,
+                          page = resourceParameters?.Page - 1,
                           perpage = resourceParameters.PerPage
-                      });
+                      }));
                 case ResourceUriType.NextPage:
-                    return _urlHelper.Link(routeName,
+                    return new Uri(_urlHelper.Link(routeName,
                       new
                       {
-                          page = resourceParameters.Page + 1,
+                          page = resourceParameters?.Page + 1,
                           perpage = resourceParameters.PerPage
-                      });
+                      }));
 
                 default:
-                    return _urlHelper.Link(routeName,
+                    return new Uri(_urlHelper.Link(routeName,
                     new
                     {
-                        page = resourceParameters.Page,
+                        page = resourceParameters?.Page,
                         perpage = resourceParameters.PerPage
-                    });
+                    }));
             }
         }
     }

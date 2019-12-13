@@ -17,7 +17,7 @@ namespace NetcorewebApi.Api.Controllers
             throw new System.NotImplementedException();
         }
 
-        public override IActionResult Get(int id)
+        public override IActionResult GetById(int id)
         {
             throw new System.NotImplementedException();
         }
