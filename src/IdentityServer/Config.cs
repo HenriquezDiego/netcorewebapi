@@ -18,14 +18,14 @@ namespace IdentityServer
             };
 
         public static IEnumerable<ApiResource> Apis =>
-            new ApiResource[]
+            new []
             {
                 new ApiResource("netcoreapi","Api NetCore")
             };
 
         //TODO
         public static IEnumerable<Client> Clients =>
-            new Client[] 
+            new [] 
             {
                  new Client
                 {
