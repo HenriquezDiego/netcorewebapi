@@ -1,20 +1,19 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
 using Hellang.Middleware.ProblemDetails;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Netcorewebapi.Api;
 using Netcorewebapi.DataAccess.Data;
 using Netcorewebapi.DataAccess.Persistence;
-using System;
 using NetcorewebApi.DataAccess.Core;
 using NetcorewebApi.DataAccess.Persistence.Repositories;
-using Microsoft.Extensions.Hosting;
+using System;
 
 namespace NetcorewebApi.Api.Extensions
 {
@@ -22,14 +21,15 @@ namespace NetcorewebApi.Api.Extensions
     {
         public static IServiceCollection AddCustomConfig(this IServiceCollection services)
         {
-            services
-                .AddMvcCore()
-                .AddApiExplorer()
-                .AddFluentValidation(conf =>
-                {
-                    conf.RegisterValidatorsFromAssemblyContaining<Startup>();
-                })
-                .AddNewtonsoftJson();
+            //services.AddMvc(options => options.EnableEndpointRouting = false);
+            //services
+            //    .AddMvcCore()
+            //    .AddApiExplorer()
+            //    .AddFluentValidation(conf =>
+            //    {
+            //        conf.RegisterValidatorsFromAssemblyContaining<Startup>();
+            //    })
+            //    .AddNewtonsoftJson();
             return services;
         }
 
