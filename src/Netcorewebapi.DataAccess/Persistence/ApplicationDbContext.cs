@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Netcorewebapi.DataAccess.Entities;
+using NetcorewebApi.DataAccess.Entities;
+
 
 namespace Netcorewebapi.DataAccess.Persistence
 {
@@ -8,7 +10,7 @@ namespace Netcorewebapi.DataAccess.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-
+        public DbSet<Documento> Documentos { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
            
