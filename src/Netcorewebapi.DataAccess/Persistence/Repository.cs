@@ -28,7 +28,6 @@ namespace ContaWebApi.DataAccess.Repositories
 
         public virtual IEnumerable<TEntity> GetAll()
         {
-         
             return _dbSet.ToList();
         }
         public async Task<TEntity> GetAsync(int id)

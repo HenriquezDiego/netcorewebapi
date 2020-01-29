@@ -3,6 +3,7 @@
 
 
 using IdentityModel;
+using IdentityServer.Data.Models;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -12,6 +13,7 @@ using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -33,12 +35,13 @@ namespace IdentityServer4.Quickstart.UI
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public AccountController(
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
-            IEventService events,
+            IEventService events,UserManager<ApplicationUser> userManager,
             TestUserStore users = null)
         {
             // if the TestUserStore is not in DI, then we'll just use the global users collection
@@ -49,6 +52,8 @@ namespace IdentityServer4.Quickstart.UI
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
+            _userManager = userManager;
+
         }
 
         /// <summary>
@@ -59,12 +64,14 @@ namespace IdentityServer4.Quickstart.UI
         {
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
-
+            
             if (vm.IsExternalLoginOnly)
             {
                 // we only have one option for logging in and it's an external provider
                 return RedirectToAction("Challenge", "External", new { provider = vm.ExternalLoginScheme, returnUrl });
             }
+
+          
 
             return View(vm);
         }
@@ -78,6 +85,19 @@ namespace IdentityServer4.Quickstart.UI
         {
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
+
+            var userTest = new ApplicationUser
+            {
+                Nombre = "Diego",
+                Apellido = "Henriquez",
+                UserName = "DiegoHenriquez",
+                Email = "diego.henriquez@catolica.edu.sv"
+            };
+            var result = await _userManager.CreateAsync(userTest,$"Password123@");
+            if (result.Succeeded)
+            {
+                //TODO
+            }
 
             // the user clicked the "cancel" button
             if (button != "login")
@@ -94,7 +114,7 @@ namespace IdentityServer4.Quickstart.UI
                     {
                         // if the client is PKCE then we assume it's native, so this change in how to
                         // return the response is for better UX for the end user.
-                        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                        return this.LoadingPage("Redirect", model.ReturnUrl);
                     }
 
                     return Redirect(model.ReturnUrl);
@@ -124,10 +144,15 @@ namespace IdentityServer4.Quickstart.UI
                             IsPersistent = true,
                             ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
                         };
-                    }
+                    };
 
                     // issue authentication cookie with subject ID and username
-                    await HttpContext.SignInAsync(user.SubjectId, user.Username, props);
+                    var isuser = new IdentityServerUser(user.SubjectId)
+                    {
+                        DisplayName = user.Username
+                    };
+
+                    await HttpContext.SignInAsync(isuser, props);
 
                     if (context != null)
                     {
@@ -135,7 +160,7 @@ namespace IdentityServer4.Quickstart.UI
                         {
                             // if the client is PKCE then we assume it's native, so this change in how to
                             // return the response is for better UX for the end user.
-                            return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                            return this.LoadingPage("Redirect", model.ReturnUrl);
                         }
 
                         // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
@@ -212,7 +237,7 @@ namespace IdentityServer4.Quickstart.UI
                 // build a return URL so the upstream provider will redirect back
                 // to us after the user has logged out. this allows us to then
                 // complete our single sign-out processing.
-                var url = Url.Action("Logout", new { logoutId = vm.LogoutId });
+                string url = Url.Action("Logout", new { logoutId = vm.LogoutId });
 
                 // this triggers a redirect to the external provider for sign-out
                 return SignOut(new AuthenticationProperties { RedirectUri = url }, vm.ExternalAuthenticationScheme);
@@ -236,14 +261,14 @@ namespace IdentityServer4.Quickstart.UI
             var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
             if (context?.IdP != null && await _schemeProvider.GetSchemeAsync(context.IdP) != null)
             {
-                var local = context.IdP == IdentityServerConstants.LocalIdentityProvider;
+                var local = context.IdP == IdentityServer4.IdentityServerConstants.LocalIdentityProvider;
 
                 // this is meant to short circuit the UI and only trigger the one external IdP
                 var vm = new LoginViewModel
                 {
                     EnableLocalLogin = local,
                     ReturnUrl = returnUrl,
-                    Username = context.LoginHint,
+                    Username = context?.LoginHint,
                 };
 
                 if (!local)
@@ -262,7 +287,7 @@ namespace IdentityServer4.Quickstart.UI
                 )
                 .Select(x => new ExternalProvider
                 {
-                    DisplayName = x.DisplayName,
+                    DisplayName = x.DisplayName ?? x.Name,
                     AuthenticationScheme = x.Name
                 }).ToList();
 
@@ -332,7 +357,7 @@ namespace IdentityServer4.Quickstart.UI
             {
                 AutomaticRedirectAfterSignOut = AccountOptions.AutomaticRedirectAfterSignOut,
                 PostLogoutRedirectUri = logout?.PostLogoutRedirectUri,
-                ClientName = string.IsNullOrEmpty(logout?.ClientName) ? logout?.ClientId : logout.ClientName,
+                ClientName = string.IsNullOrEmpty(logout?.ClientName) ? logout?.ClientId : logout?.ClientName,
                 SignOutIframeUrl = logout?.SignOutIFrameUrl,
                 LogoutId = logoutId
             };
@@ -340,7 +365,7 @@ namespace IdentityServer4.Quickstart.UI
             if (User?.Identity.IsAuthenticated == true)
             {
                 var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
-                if (idp != null && idp != IdentityServerConstants.LocalIdentityProvider)
+                if (idp != null && idp != IdentityServer4.IdentityServerConstants.LocalIdentityProvider)
                 {
                     var providerSupportsSignout = await HttpContext.GetSchemeSupportsSignOutAsync(idp);
                     if (providerSupportsSignout)

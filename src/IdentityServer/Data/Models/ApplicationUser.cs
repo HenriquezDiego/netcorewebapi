@@ -1,11 +1,11 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
-using System;
 
 namespace IdentityServer.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
     }
 }
