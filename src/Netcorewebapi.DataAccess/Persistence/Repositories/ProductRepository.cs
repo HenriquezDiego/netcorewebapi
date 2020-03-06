@@ -42,7 +42,7 @@ namespace NetcorewebApi.DataAccess.Persistence.Repositories
                                 ||a.Category.ToLowerInvariant().Contains(searchQueryForWhereClause));
 
             }
-            var x = DbContext.Products.Where(y => y.Id > 15).Sum(s => s.Price );
+
             return collectionBeforePaging
                 .ToPagedResult(parameters.Page,parameters.PerPage);
         }

@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace IdentityServer4.Quickstart.UI
@@ -85,15 +86,24 @@ namespace IdentityServer4.Quickstart.UI
         {
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
-
+            
             var userTest = new ApplicationUser
             {
-                Nombre = "Diego",
+                Nombre = "Nataly",
                 Apellido = "Henriquez",
-                UserName = "DiegoHenriquez",
+                UserName = "Nataly",
                 Email = "diego.henriquez@catolica.edu.sv"
             };
+            
             var result = await _userManager.CreateAsync(userTest,$"Password123@");
+            await _userManager.AddClaimAsync(userTest, new Claim(ClaimTypes.GivenName, "Molly"));
+            await _userManager.AddClaimAsync(userTest, new Claim(ClaimTypes.GivenName, "Billy"));
+            await _userManager.AddClaimAsync(userTest, new Claim("ModuloX", "Bob"));
+            
+
+            var userOld = _userManager.Users.FirstOrDefault(x => x.Nombre.Equals("Sally"));
+            var claims = await _userManager.GetClaimsAsync(userOld);
+
             if (result.Succeeded)
             {
                 //TODO
@@ -112,6 +122,7 @@ namespace IdentityServer4.Quickstart.UI
                     // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                     if (await _clientStore.IsPkceClientAsync(context.ClientId))
                     {
+                        
                         // if the client is PKCE then we assume it's native, so this change in how to
                         // return the response is for better UX for the end user.
                         return this.LoadingPage("Redirect", model.ReturnUrl);
@@ -144,7 +155,7 @@ namespace IdentityServer4.Quickstart.UI
                             IsPersistent = true,
                             ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
                         };
-                    };
+                    }
 
                     // issue authentication cookie with subject ID and username
                     var isuser = new IdentityServerUser(user.SubjectId)
@@ -276,6 +287,7 @@ namespace IdentityServer4.Quickstart.UI
                     vm.ExternalProviders = new[] { new ExternalProvider { AuthenticationScheme = context.IdP } };
                 }
 
+
                 return vm;
             }
 
@@ -362,6 +374,7 @@ namespace IdentityServer4.Quickstart.UI
                 LogoutId = logoutId
             };
 
+            
             if (User?.Identity.IsAuthenticated == true)
             {
                 var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
